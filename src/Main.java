@@ -27,7 +27,6 @@ public class Main {
     }
 
     public static void zipFiles(String pathZip, List<String> pathList) {
-        File file;
         try (ZipOutputStream zout = new ZipOutputStream(new FileOutputStream(pathZip))) {
             for(String path : pathList) {
                 FileInputStream fis = new FileInputStream(path);
@@ -39,7 +38,7 @@ public class Main {
                 fis.read(buffer);
                 zout.write(buffer);
                 zout.closeEntry();
-                file = new File(path);
+                File file = new File(path);
                 file.delete();
                 if (file.delete())
                     System.out.println(fileName + " добавлен в архив и удален");
