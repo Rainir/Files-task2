@@ -14,6 +14,7 @@ public class Main {
         saveGame(gamer2, "F://Game/savegame/save2.dat", pathList);
         saveGame(gamer3, "F://Game/savegame/save3.dat", pathList);
         zipFiles("F://Game/savegame/zip.zip", pathList);
+        delFiles(pathList);
     }
 
     public static void saveGame(GameProgress gamer, String path, List<String> pathList) {
@@ -38,15 +39,19 @@ public class Main {
                 fis.read(buffer);
                 zout.write(buffer);
                 zout.closeEntry();
-                File file = new File(path);
-                file.delete();
-                if (file.delete())
-                    System.out.println(fileName + " добавлен в архив и удален");
-                else
-                    System.out.println("Ошибка, не могу удалить " + fileName);
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    public static void delFiles(List<String> pathList) {
+        for (String path : pathList) {
+            File file = new File(path);
+            if (file.delete())
+                System.out.println("Файл удален");
+            else
+                System.out.println("Ошибка, не могу удалить файл");
         }
     }
 }
