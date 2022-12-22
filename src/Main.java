@@ -14,6 +14,7 @@ public class Main {
         saveGame(gamer2, "F://Game/savegame/save2.dat", pathList);
         saveGame(gamer3, "F://Game/savegame/save3.dat", pathList);
         zipFiles("F://Game/savegame/zip.zip", pathList);
+
         delFiles(pathList);
     }
 
@@ -39,6 +40,7 @@ public class Main {
                 fis.read(buffer);
                 zout.write(buffer);
                 zout.closeEntry();
+                fis.close();
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
